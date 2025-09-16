@@ -27,6 +27,12 @@ struct EmbraceOutdoorsApp: App {
             )
             .start()
             
+            try? Embrace.client?.metadata.addProperty(
+                key: "Experiment: Checkout Flow 2.0",
+                value: Int.random(in: 0...10) < 8 ? "Control" : "Experiment",
+                lifespan: .session
+            )
+            
         } catch let e {
             print("Couldn't initialize Embrace SDK: \(e.localizedDescription)")
         }
